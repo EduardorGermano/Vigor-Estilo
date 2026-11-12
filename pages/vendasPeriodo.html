@@ -1,0 +1,349 @@
+<div class="page-header">
+
+    <div>
+        <h2>Consultar Vendas por Período</h2>
+        <p>
+            Informe um intervalo de datas para consultar as vendas realizadas.
+        </p>
+    </div>
+
+</div>
+
+
+<!-- FILTROS -->
+<div class="card vendas-filtros">
+
+    <div class="form-group">
+
+        <label for="dataInicialVenda">
+            Data inicial
+        </label>
+
+        <input type="date" id="dataInicialVenda">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="dataFinalVenda">
+            Data final
+        </label>
+
+        <input type="date" id="dataFinalVenda">
+
+    </div>
+
+
+    <button class="btn btn-primary btn-filtrar-vendas" onclick="filtrarVendasPeriodo()">
+
+        Consultar
+
+    </button>
+
+</div>
+
+
+<!-- RESUMO -->
+<div class="vendas-resumo">
+
+    <div class="resumo-produto-card">
+        <span>Quantidade de vendas</span>
+        <strong id="quantidadeVendasPeriodo">5</strong>
+    </div>
+
+    <div class="resumo-produto-card">
+        <span>Total vendido</span>
+        <strong id="totalVendasPeriodo">R$ 1.059,30</strong>
+    </div>
+
+    <div class="resumo-produto-card">
+        <span>Vendas canceladas</span>
+        <strong id="vendasCanceladasPeriodo">1</strong>
+    </div>
+
+</div>
+
+
+<!-- TABELA -->
+<div class="table-container">
+
+    <table id="tabelaVendasPeriodo">
+
+        <thead>
+
+            <tr>
+                <th>Venda</th>
+                <th>Data</th>
+                <th>Cliente</th>
+                <th>Pagamento</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <tr data-data="2026-11-12" data-total="219.80" data-status="Concluída">
+
+                <td>#00131</td>
+
+                <td>12/11/2026</td>
+
+                <td>João da Silva</td>
+
+                <td>PIX</td>
+
+                <td>R$ 219,80</td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Concluída
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirDetalhesVenda('00131')">
+
+                        Detalhes
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirCancelamentoVenda('00131')">
+
+                        Cancelar
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr data-data="2026-11-10" data-total="180.00" data-status="Concluída">
+
+                <td>#00125</td>
+
+                <td>10/11/2026</td>
+
+                <td>João da Silva</td>
+
+                <td>Fiado</td>
+
+                <td>R$ 180,00</td>
+
+                <td>
+                    <span class="badge badge-warning">
+                        Pendente
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirDetalhesVenda('00125')">
+
+                        Detalhes
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirCancelamentoVenda('00125')">
+
+                        Cancelar
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr data-data="2026-11-08" data-total="149.90" data-status="Cancelada">
+
+                <td>#00119</td>
+
+                <td>08/11/2026</td>
+
+                <td>Não identificado</td>
+
+                <td>Débito</td>
+
+                <td>R$ 149,90</td>
+
+                <td>
+                    <span class="badge badge-danger">
+                        Cancelada
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirDetalhesVenda('00119')">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr data-data="2026-11-05" data-total="339.70" data-status="Concluída">
+
+                <td>#00112</td>
+
+                <td>05/11/2026</td>
+
+                <td>Maria Aparecida</td>
+
+                <td>Crédito</td>
+
+                <td>R$ 339,70</td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Concluída
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirDetalhesVenda('00112')">
+
+                        Detalhes
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirCancelamentoVenda('00112')">
+
+                        Cancelar
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr data-data="2026-11-02" data-total="169.90" data-status="Concluída">
+
+                <td>#00105</td>
+
+                <td>02/11/2026</td>
+
+                <td>Carlos Eduardo</td>
+
+                <td>PIX</td>
+
+                <td>R$ 169,90</td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Concluída
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirDetalhesVenda('00105')">
+
+                        Detalhes
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirCancelamentoVenda('00105')">
+
+                        Cancelar
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div id="nenhumaVendaPeriodo" class="empty-state" style="display: none;">
+
+        <strong>Nenhuma venda encontrada.</strong>
+
+        <span>
+            Altere o intervalo de datas.
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL DETALHES -->
+<div id="modalDetalhesVenda" class="modal-overlay">
+
+    <div class="modal modal-large">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Detalhes da Venda</h3>
+                <p id="numeroVendaDetalhes">Venda</p>
+            </div>
+
+            <button class="modal-close" onclick="fecharDetalhesVenda()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div id="dadosVendaDetalhes" class="detalhes-grid">
+            </div>
+
+            <div class="table-container" style="margin-top: 20px;">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Produto</th>
+                            <th>Variação</th>
+                            <th>Quantidade</th>
+                            <th>Subtotal</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="itensVendaDetalhes">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="btn btn-secondary" onclick="fecharDetalhesVenda()">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

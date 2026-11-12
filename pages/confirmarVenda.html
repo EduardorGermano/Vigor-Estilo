@@ -1,0 +1,196 @@
+<div class="page-header">
+
+    <div>
+
+        <h2>Confirmar Venda</h2>
+
+        <p>
+            Confira os dados antes de finalizar a operação.
+        </p>
+
+    </div>
+
+
+    <button class="btn btn-secondary" onclick="abrirPagina('venda')">
+
+        Voltar
+
+    </button>
+
+</div>
+
+
+<div class="confirmacao-venda-layout">
+
+
+    <!-- INFORMAÇÕES -->
+
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Dados da Venda</h3>
+
+            <span>
+                Resumo da operação.
+            </span>
+
+        </div>
+
+
+        <div class="confirmacao-info-grid">
+
+            <div class="detalhe-item">
+
+                <span>Cliente</span>
+
+                <strong id="confirmarCliente">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detalhe-item">
+
+                <span>Forma de pagamento</span>
+
+                <strong id="confirmarPagamento">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detalhe-item">
+
+                <span>Subtotal</span>
+
+                <strong id="confirmarSubtotal">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detalhe-item">
+
+                <span>Desconto</span>
+
+                <strong id="confirmarDesconto">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detalhe-item destaque-total">
+
+                <span>Valor final</span>
+
+                <strong id="confirmarTotal">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div id="confirmarVencimentoContainer" class="confirmacao-vencimento" style="display: none;">
+
+            <span>Vencimento da venda a prazo</span>
+
+            <strong id="confirmarVencimento">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ITENS -->
+
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Produtos</h3>
+
+            <span>
+                Itens que serão registrados na venda.
+            </span>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor unitário</th>
+                        <th>Subtotal</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="confirmarItensVenda">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- AÇÕES -->
+
+    <div class="confirmacao-actions">
+
+        <button class="btn btn-secondary" onclick="abrirPagina('venda')">
+
+            Corrigir Venda
+
+        </button>
+
+
+        <button class="btn btn-primary" onclick="concluirVenda()">
+
+            Confirmar Venda
+
+        </button>
+
+    </div>
+
+
+    <!-- SUCESSO -->
+
+    <div id="vendaConcluida" class="venda-concluida" style="display: none;">
+
+        <div class="sucesso-icon">
+            ✓
+        </div>
+
+        <div>
+
+            <strong>
+                Venda registrada com sucesso!
+            </strong>
+
+            <p>
+                O estoque dos produtos foi atualizado.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

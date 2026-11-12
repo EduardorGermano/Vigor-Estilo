@@ -1,0 +1,444 @@
+<div class="page-header">
+
+    <div>
+        <h2>Troca de Produto</h2>
+        <p>
+            Localize a venda original e registre os produtos envolvidos na troca.
+        </p>
+    </div>
+
+</div>
+
+
+<div class="troca-layout">
+
+    <!-- ========================= -->
+    <!-- LOCALIZAR VENDA -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>1. Localizar venda original</h3>
+
+            <span>
+                Informe o número da venda para consultar os produtos.
+            </span>
+
+        </div>
+
+
+        <div class="localizar-venda-grid">
+
+            <div class="form-group">
+
+                <label for="numeroVendaTroca">
+                    Número da venda
+                </label>
+
+                <input type="text" id="numeroVendaTroca" placeholder="Ex.: 00131">
+
+            </div>
+
+
+            <button class="btn btn-primary" onclick="localizarVendaTroca()">
+
+                Localizar Venda
+
+            </button>
+
+        </div>
+
+
+        <div id="mensagemTroca" class="form-message" style="display: none;">
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- VENDA ENCONTRADA -->
+    <!-- ========================= -->
+
+    <div id="dadosVendaTroca" class="card" style="display: none;">
+
+        <div class="form-section-title">
+
+            <h3>Venda encontrada</h3>
+
+            <span>
+                Confira os dados da venda original.
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-grid">
+
+            <div class="detalhe-item">
+
+                <span>Venda</span>
+
+                <strong id="trocaVendaNumero">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detalhe-item">
+
+                <span>Data</span>
+
+                <strong id="trocaVendaData">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detalhe-item">
+
+                <span>Cliente</span>
+
+                <strong id="trocaVendaCliente">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detalhe-item">
+
+                <span>Valor da venda</span>
+
+                <strong id="trocaVendaValor">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- PRODUTO DEVOLVIDO -->
+    <!-- ========================= -->
+
+    <div id="etapaProdutoDevolvido" class="card" style="display: none;">
+
+        <div class="form-section-title">
+
+            <h3>2. Produto devolvido</h3>
+
+            <span>
+                Selecione o produto que o cliente deseja trocar.
+            </span>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="produtoDevolvido">
+                Produto da venda original
+            </label>
+
+            <select id="produtoDevolvido" onchange="selecionarProdutoDevolvido()">
+
+                <option value="">
+                    Selecione
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div id="resumoProdutoDevolvido" class="produto-troca-resumo" style="display: none;">
+
+            <div>
+
+                <span>Produto</span>
+
+                <strong id="devolvidoNome">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Valor</span>
+
+                <strong id="devolvidoValor">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- PRODUTO SUBSTITUTO -->
+    <!-- ========================= -->
+
+    <div id="etapaProdutoSubstituto" class="card" style="display: none;">
+
+        <div class="form-section-title">
+
+            <h3>3. Produto substituto</h3>
+
+            <span>
+                Selecione o novo produto que será entregue ao cliente.
+            </span>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="produtoSubstituto">
+                Novo produto
+            </label>
+
+            <select id="produtoSubstituto" onchange="selecionarProdutoSubstituto()">
+
+                <option value="">
+                    Selecione
+                </option>
+
+                <option value="whey">
+                    Whey Protein - Chocolate - 1 kg
+                </option>
+
+                <option value="creatina">
+                    Creatina - 250 g
+                </option>
+
+                <option value="camisetaM">
+                    Camiseta Dry Fit - Preta - M
+                </option>
+
+                <option value="camisetaG">
+                    Camiseta Dry Fit - Preta - G
+                </option>
+
+                <option value="preTreino">
+                    Pré-Treino Haze - Frutas Vermelhas - 300 g
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div id="resumoProdutoSubstituto" class="produto-troca-resumo" style="display: none;">
+
+            <div>
+
+                <span>Produto</span>
+
+                <strong id="substitutoNome">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Valor</span>
+
+                <strong id="substitutoValor">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Estoque disponível</span>
+
+                <strong id="substitutoEstoque">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- DIFERENÇA DE VALOR -->
+    <!-- ========================= -->
+
+    <div id="etapaDiferencaTroca" class="card" style="display: none;">
+
+        <div class="form-section-title">
+
+            <h3>4. Diferença de valor</h3>
+
+            <span>
+                O sistema calcula automaticamente a diferença.
+            </span>
+
+        </div>
+
+
+        <div class="diferenca-troca-grid">
+
+            <div>
+
+                <span>Produto devolvido</span>
+
+                <strong id="valorProdutoDevolvidoTroca">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Produto substituto</span>
+
+                <strong id="valorProdutoSubstitutoTroca">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div class="diferenca-destaque">
+
+                <span>Diferença</span>
+
+                <strong id="valorDiferencaTroca">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div id="mensagemDiferencaTroca" class="informacao-troca">
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- EFEITOS -->
+    <!-- ========================= -->
+
+    <div id="etapaEfeitosTroca" class="card" style="display: none;">
+
+        <div class="form-section-title">
+
+            <h3>5. Efeitos da troca</h3>
+
+            <span>
+                Alterações que serão simuladas ao concluir.
+            </span>
+
+        </div>
+
+
+        <div class="efeitos-cancelamento">
+
+            <div class="efeito-item">
+
+                <strong>Produto devolvido</strong>
+
+                <span>
+                    O item retornará ao estoque.
+                </span>
+
+            </div>
+
+
+            <div class="efeito-item">
+
+                <strong>Produto substituto</strong>
+
+                <span>
+                    Uma unidade será retirada do estoque.
+                </span>
+
+            </div>
+
+
+            <div class="efeito-item">
+
+                <strong>Diferença de valor</strong>
+
+                <span>
+                    O valor será registrado conforme o resultado da troca.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- AÇÕES -->
+    <!-- ========================= -->
+
+    <div id="acoesTroca" class="troca-actions" style="display: none;">
+
+        <button class="btn btn-secondary" onclick="abrirPagina('vendasPeriodo')">
+
+            Cancelar
+
+        </button>
+
+
+        <button class="btn btn-primary" onclick="confirmarTrocaProduto()">
+
+            Confirmar Troca
+
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- SUCESSO -->
+    <!-- ========================= -->
+
+    <div id="trocaConcluida" class="venda-concluida" style="display: none;">
+
+        <div class="sucesso-icon">
+            ✓
+        </div>
+
+        <div>
+
+            <strong>
+                Troca registrada com sucesso.
+            </strong>
+
+            <p>
+                Os efeitos no estoque e nos valores foram atualizados.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

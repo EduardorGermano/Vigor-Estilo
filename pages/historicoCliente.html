@@ -1,0 +1,266 @@
+<div class="page-header">
+
+    <div>
+        <h2>Histórico de Compras</h2>
+        <p>
+            Consulte as compras realizadas pelo cliente selecionado.
+        </p>
+    </div>
+
+    <button class="btn btn-secondary" onclick="abrirPagina('clientes')">
+
+        Voltar para Clientes
+
+    </button>
+
+</div>
+
+
+<div class="card cliente-selecionado">
+
+    <div>
+
+        <span>Cliente selecionado</span>
+
+        <strong id="nomeClienteHistorico">
+            João da Silva
+        </strong>
+
+    </div>
+
+    <div>
+
+        <span>Saldo pendente</span>
+
+        <strong>
+            R$ 180,00
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="historico-resumo">
+
+    <div class="resumo-produto-card">
+        <span>Total de compras</span>
+        <strong>3</strong>
+    </div>
+
+    <div class="resumo-produto-card">
+        <span>Total comprado</span>
+        <strong>R$ 469,70</strong>
+    </div>
+
+    <div class="resumo-produto-card">
+        <span>Saldo pendente</span>
+        <strong>R$ 180,00</strong>
+    </div>
+
+</div>
+
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Data</th>
+                <th>Venda</th>
+                <th>Forma de pagamento</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>
+                    10/11/2026
+                </td>
+
+                <td>
+                    #00125
+                </td>
+
+                <td>
+                    Fiado
+                </td>
+
+                <td>
+                    R$ 180,00
+                </td>
+
+                <td>
+                    <span class="badge badge-danger">
+                        Em atraso
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" onclick="abrirItensCompra('00125')">
+
+                        Ver itens
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    26/10/2026
+                </td>
+
+                <td>
+                    #00103
+                </td>
+
+                <td>
+                    PIX
+                </td>
+
+                <td>
+                    R$ 159,90
+                </td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Pago
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" onclick="abrirItensCompra('00103')">
+
+                        Ver itens
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    14/10/2026
+                </td>
+
+                <td>
+                    #00087
+                </td>
+
+                <td>
+                    Cartão de débito
+                </td>
+
+                <td>
+                    R$ 129,80
+                </td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Pago
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" onclick="abrirItensCompra('00087')">
+
+                        Ver itens
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- MODAL ITENS DA COMPRA -->
+<div id="modalItensCompra" class="modal-overlay">
+
+    <div class="modal modal-large">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>
+                    Itens da Compra
+                </h3>
+
+                <p id="numeroVendaHistorico">
+                    Venda
+                </p>
+            </div>
+
+            <button class="modal-close" onclick="fecharItensCompra()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Produto</th>
+                            <th>Variação</th>
+                            <th>Quantidade</th>
+                            <th>Valor unitário</th>
+                            <th>Subtotal</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="itensCompraTabela">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="btn btn-secondary" onclick="fecharItensCompra()">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

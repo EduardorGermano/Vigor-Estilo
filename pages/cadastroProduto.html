@@ -1,0 +1,244 @@
+<div class="page-header">
+
+    <div>
+        <h2>Cadastro de Produto</h2>
+        <p>
+            Preencha os dados abaixo para cadastrar um novo produto.
+        </p>
+    </div>
+
+</div>
+
+
+<form id="formCadastroProduto" class="card form-produto" onsubmit="salvarProduto(event)">
+
+    <div class="form-grid">
+
+        <!-- NOME -->
+        <div class="form-group">
+
+            <label for="nomeProduto">
+                Nome do produto *
+            </label>
+
+            <input type="text" id="nomeProduto" placeholder="Ex.: Whey Protein" required>
+
+        </div>
+
+
+        <!-- CATEGORIA -->
+        <div class="form-group">
+
+            <label for="categoriaProduto">
+                Categoria *
+            </label>
+
+            <select id="categoriaProduto" onchange="alterarCamposCategoria()" required>
+
+                <option value="">
+                    Selecione
+                </option>
+
+                <option value="Suplemento">
+                    Suplemento
+                </option>
+
+                <option value="Roupa">
+                    Roupa
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- MARCA -->
+        <div class="form-group">
+
+            <label for="marcaProduto">
+                Marca *
+            </label>
+
+            <input type="text" id="marcaProduto" placeholder="Ex.: Growth" required>
+
+        </div>
+
+
+        <!-- PREÇO -->
+        <div class="form-group">
+
+            <label for="precoProduto">
+                Preço de venda *
+            </label>
+
+            <input type="number" id="precoProduto" min="0" step="0.01" placeholder="0,00" required>
+
+        </div>
+
+
+        <!-- ESTOQUE MÍNIMO -->
+        <div class="form-group">
+
+            <label for="estoqueMinimo">
+                Estoque mínimo *
+            </label>
+
+            <input type="number" id="estoqueMinimo" min="0" step="1" placeholder="0" required>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- CAMPOS DE SUPLEMENTO -->
+    <!-- ========================= -->
+
+    <div id="camposSuplemento" class="categoria-campos" style="display: none;">
+
+        <div class="form-section-title">
+
+            <h3>Dados do suplemento</h3>
+
+            <span>
+                Informe os dados da variação.
+            </span>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <!-- SABOR -->
+            <div class="form-group">
+
+                <label for="saborProduto">
+                    Sabor *
+                </label>
+
+                <input type="text" id="saborProduto" placeholder="Ex.: Chocolate">
+
+            </div>
+
+
+            <!-- PESO -->
+            <div class="form-group">
+
+                <label for="pesoProduto">
+                    Peso *
+                </label>
+
+                <input type="text" id="pesoProduto" placeholder="Ex.: 1 kg">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- CAMPOS DE ROUPA -->
+    <!-- ========================= -->
+
+    <div id="camposRoupa" class="categoria-campos" style="display: none;">
+
+        <div class="form-section-title">
+
+            <h3>Dados da roupa</h3>
+
+            <span>
+                Informe os dados da variação.
+            </span>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <!-- MODELO -->
+            <div class="form-group">
+
+                <label for="modeloProduto">
+                    Modelo *
+                </label>
+
+                <input type="text" id="modeloProduto" placeholder="Ex.: Dry Fit">
+
+            </div>
+
+
+            <!-- COR -->
+            <div class="form-group">
+
+                <label for="corProduto">
+                    Cor *
+                </label>
+
+                <input type="text" id="corProduto" placeholder="Ex.: Preta">
+
+            </div>
+
+
+            <!-- TAMANHO -->
+            <div class="form-group">
+
+                <label for="tamanhoProduto">
+                    Tamanho *
+                </label>
+
+                <select id="tamanhoProduto">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="P">
+                        P
+                    </option>
+
+                    <option value="M">
+                        M
+                    </option>
+
+                    <option value="G">
+                        G
+                    </option>
+
+                    <option value="GG">
+                        GG
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MENSAGEM -->
+    <div id="mensagemProduto" class="form-message" style="display: none;">
+    </div>
+
+
+    <!-- BOTÕES -->
+    <div class="form-actions">
+
+        <button type="button" class="btn btn-secondary" onclick="abrirPagina('produtos')">
+
+            Cancelar
+
+        </button>
+
+
+        <button type="submit" class="btn btn-primary">
+
+            Salvar Produto
+
+        </button>
+
+    </div>
+
+</form>

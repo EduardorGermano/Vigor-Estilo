@@ -1,0 +1,190 @@
+<div class="page-header">
+
+    <div>
+        <h2>Cancelar Venda</h2>
+        <p>
+            Informe o motivo e confirme o cancelamento da venda.
+        </p>
+    </div>
+
+    <button class="btn btn-secondary" onclick="abrirPagina('vendasPeriodo')">
+
+        Voltar
+
+    </button>
+
+</div>
+
+
+<div class="cancelamento-layout">
+
+    <!-- DADOS DA VENDA -->
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Venda selecionada</h3>
+
+            <span>
+                Confira os dados antes de cancelar.
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-grid">
+
+            <div class="detalhe-item">
+                <span>Venda</span>
+                <strong id="cancelarVendaNumero">-</strong>
+            </div>
+
+
+            <div class="detalhe-item">
+                <span>Data</span>
+                <strong id="cancelarVendaData">-</strong>
+            </div>
+
+
+            <div class="detalhe-item">
+                <span>Cliente</span>
+                <strong id="cancelarVendaCliente">-</strong>
+            </div>
+
+
+            <div class="detalhe-item">
+                <span>Valor</span>
+                <strong id="cancelarVendaValor">-</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- EFEITOS -->
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Efeitos do cancelamento</h3>
+
+            <span>
+                O sistema realizará as seguintes alterações.
+            </span>
+
+        </div>
+
+
+        <div class="efeitos-cancelamento">
+
+            <div class="efeito-item">
+
+                <strong>Estoque</strong>
+
+                <span>
+                    Os produtos da venda retornarão ao estoque.
+                </span>
+
+            </div>
+
+
+            <div class="efeito-item">
+
+                <strong>Financeiro</strong>
+
+                <span>
+                    O valor da venda deixará de compor os totais financeiros.
+                </span>
+
+            </div>
+
+
+            <div class="efeito-item">
+
+                <strong>Histórico</strong>
+
+                <span>
+                    A venda permanecerá registrada como cancelada.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MOTIVO -->
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Motivo do cancelamento</h3>
+
+            <span>
+                O motivo será mantido no histórico da operação.
+            </span>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="motivoCancelamentoVenda">
+                Motivo *
+            </label>
+
+            <textarea id="motivoCancelamentoVenda" rows="5" placeholder="Descreva o motivo do cancelamento...">
+            </textarea>
+
+        </div>
+
+
+        <div id="mensagemCancelamento" class="form-message" style="display: none;">
+        </div>
+
+    </div>
+
+
+    <!-- AÇÕES -->
+    <div class="cancelamento-actions">
+
+        <button class="btn btn-secondary" onclick="abrirPagina('vendasPeriodo')">
+
+            Voltar
+
+        </button>
+
+
+        <button class="btn btn-danger" onclick="confirmarCancelamentoVenda()">
+
+            Confirmar Cancelamento
+
+        </button>
+
+    </div>
+
+
+    <!-- SUCESSO -->
+    <div id="cancelamentoConcluido" class="venda-concluida" style="display: none;">
+
+        <div class="sucesso-icon">
+            ✓
+        </div>
+
+        <div>
+
+            <strong>
+                Venda cancelada com sucesso.
+            </strong>
+
+            <p>
+                O estoque e os valores financeiros foram atualizados.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

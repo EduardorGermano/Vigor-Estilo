@@ -1,0 +1,375 @@
+<div class="page-header">
+
+    <div>
+        <h2>Entrada de Mercadorias</h2>
+
+        <p>
+            Registre os produtos recebidos e atualize as quantidades em estoque.
+        </p>
+    </div>
+
+</div>
+
+
+<div class="entrada-layout">
+
+    <!-- ========================= -->
+    <!-- DADOS DA ENTRADA -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Dados da entrada</h3>
+
+            <span>
+                Informe os dados referentes ao recebimento da mercadoria.
+            </span>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <!-- FORNECEDOR -->
+
+            <div class="form-group">
+
+                <label for="fornecedorEntrada">
+                    Fornecedor *
+                </label>
+
+                <input type="text" id="fornecedorEntrada" placeholder="Ex.: Distribuidora Fitness">
+
+            </div>
+
+
+            <!-- DATA -->
+
+            <div class="form-group">
+
+                <label for="dataEntrada">
+                    Data da entrada *
+                </label>
+
+                <input type="date" id="dataEntrada">
+
+            </div>
+
+
+            <!-- NOTA FISCAL -->
+
+            <div class="form-group">
+
+                <label for="notaFiscalEntrada">
+                    Número da Nota Fiscal
+                </label>
+
+                <input type="text" id="notaFiscalEntrada" placeholder="Ex.: NF-45872">
+
+            </div>
+
+
+            <!-- VALOR TOTAL -->
+
+            <div class="form-group">
+
+                <label for="valorTotalEntrada">
+                    Valor pago na entrada
+                </label>
+
+                <input type="number" id="valorTotalEntrada" min="0" step="0.01" placeholder="0,00">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- ADICIONAR PRODUTO -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Adicionar produtos</h3>
+
+            <span>
+                Selecione os produtos recebidos e informe suas quantidades.
+            </span>
+
+        </div>
+
+
+        <div class="entrada-produto-grid">
+
+            <!-- PRODUTO -->
+
+            <div class="form-group">
+
+                <label for="produtoEntrada">
+                    Produto *
+                </label>
+
+                <select id="produtoEntrada" onchange="alterarProdutoEntrada()">
+
+                    <option value="">
+                        Selecione um produto
+                    </option>
+
+                    <option value="whey">
+                        Whey Protein - Chocolate - 1 kg
+                    </option>
+
+                    <option value="creatina">
+                        Creatina - 250 g
+                    </option>
+
+                    <option value="camisetaM">
+                        Camiseta Dry Fit - Preta - M
+                    </option>
+
+                    <option value="camisetaG">
+                        Camiseta Dry Fit - Preta - G
+                    </option>
+
+                    <option value="preTreino">
+                        Pré-Treino Haze - Frutas Vermelhas - 300 g
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- QUANTIDADE -->
+
+            <div class="form-group">
+
+                <label for="quantidadeEntrada">
+                    Quantidade *
+                </label>
+
+                <input type="number" id="quantidadeEntrada" min="1" value="1">
+
+            </div>
+
+
+            <button class="btn btn-primary btn-adicionar-entrada" onclick="adicionarProdutoEntrada()">
+
+                + Adicionar
+
+            </button>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- CAMPOS DE SUPLEMENTO -->
+        <!-- ========================= -->
+
+        <div id="dadosLoteEntrada" class="dados-lote-entrada" style="display: none;">
+
+            <div class="entrada-aviso">
+
+                Este produto é um suplemento. Informe os dados da remessa recebida.
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="loteEntrada">
+                        Lote
+                    </label>
+
+                    <input type="text" id="loteEntrada" placeholder="Ex.: LT202611">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="validadeEntrada">
+                        Data de validade *
+                    </label>
+
+                    <input type="date" id="validadeEntrada">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id="mensagemEntrada" class="form-message" style="display: none;">
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- PRODUTOS RECEBIDOS -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="form-section-title">
+
+            <h3>Produtos recebidos</h3>
+
+            <span>
+                Confira os itens antes de confirmar a entrada.
+            </span>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Quantidade</th>
+                        <th>Lote</th>
+                        <th>Validade</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="itensEntradaTabela">
+
+                    <tr>
+
+                        <td colspan="6" class="venda-vazia">
+                            Nenhum produto adicionado.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- RESUMO -->
+    <!-- ========================= -->
+
+    <div class="card resumo-entrada">
+
+        <div class="form-section-title">
+
+            <h3>Resumo da entrada</h3>
+
+            <span>
+                Quantidades que serão adicionadas ao estoque.
+            </span>
+
+        </div>
+
+
+        <div class="entrada-resumo-grid">
+
+            <div>
+
+                <span>Produtos diferentes</span>
+
+                <strong id="entradaProdutosDiferentes">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Total de unidades</span>
+
+                <strong id="entradaTotalUnidades">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Valor informado</span>
+
+                <strong id="entradaValorResumo">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- AÇÕES -->
+    <!-- ========================= -->
+
+    <div class="entrada-actions">
+
+        <button class="btn btn-secondary" onclick="abrirPagina('inicio')">
+
+            Cancelar
+
+        </button>
+
+
+        <button class="btn btn-primary" onclick="confirmarEntradaMercadoria()">
+
+            Confirmar Entrada
+
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- SUCESSO -->
+    <!-- ========================= -->
+
+    <div id="entradaConcluida" class="venda-concluida" style="display: none;">
+
+        <div class="sucesso-icon">
+            ✓
+        </div>
+
+
+        <div>
+
+            <strong>
+                Entrada registrada com sucesso.
+            </strong>
+
+            <p>
+                As quantidades dos produtos foram atualizadas no estoque.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

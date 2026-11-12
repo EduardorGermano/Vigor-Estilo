@@ -1,0 +1,409 @@
+<div class="page-header">
+
+    <div>
+
+        <h2>Consulta de Estoque</h2>
+
+        <p>
+            Consulte as quantidades disponíveis e identifique produtos que precisam de reposição.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- RESUMO -->
+<!-- ===================================================== -->
+
+<div class="estoque-resumo">
+
+    <div class="resumo-produto-card">
+
+        <span>
+            Variações cadastradas
+        </span>
+
+        <strong id="estoqueTotalProdutos">
+            0
+        </strong>
+
+    </div>
+
+
+    <div class="resumo-produto-card">
+
+        <span>
+            Estoque baixo
+        </span>
+
+        <strong id="estoqueTotalBaixo">
+            0
+        </strong>
+
+    </div>
+
+
+    <div class="resumo-produto-card">
+
+        <span>
+            Próximos do vencimento
+        </span>
+
+        <strong id="estoqueTotalVencimento">
+            0
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- FILTROS -->
+<!-- ===================================================== -->
+
+<div class="card estoque-filtros">
+
+    <div class="form-group">
+
+        <label for="pesquisaEstoque">
+            Pesquisar produto
+        </label>
+
+        <input type="text" id="pesquisaEstoque" placeholder="Digite o nome ou variação..." oninput="filtrarEstoque()">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="categoriaEstoque">
+            Categoria
+        </label>
+
+        <select id="categoriaEstoque" onchange="filtrarEstoque()">
+
+            <option value="">
+                Todas
+            </option>
+
+            <option value="Suplemento">
+                Suplemento
+            </option>
+
+            <option value="Roupa">
+                Roupa
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="estoque-checkbox">
+
+        <label>
+
+            <input type="checkbox" id="somenteEstoqueBaixo" onchange="filtrarEstoque()">
+
+            Mostrar somente estoque baixo
+
+        </label>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- TABELA -->
+<!-- ===================================================== -->
+
+<div class="table-container">
+
+    <table id="tabelaEstoque">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Produto
+                </th>
+
+                <th>
+                    Categoria
+                </th>
+
+                <th>
+                    Estoque atual
+                </th>
+
+                <th>
+                    Estoque mínimo
+                </th>
+
+                <th>
+                    Validade mais próxima
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+                <th>
+                    Ações
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="corpoTabelaEstoque">
+
+        </tbody>
+
+    </table>
+
+
+    <div id="nenhumEstoque" class="empty-state" style="display: none;">
+
+        <strong>
+            Nenhum produto encontrado.
+        </strong>
+
+        <span>
+            Altere os filtros utilizados.
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- LEGENDA -->
+<!-- ===================================================== -->
+
+<div class="card estoque-legenda">
+
+    <h3>
+        Legenda
+    </h3>
+
+
+    <div class="estoque-legenda-itens">
+
+        <div>
+
+            <span class="badge badge-success">
+                Normal
+            </span>
+
+            <p>
+                Quantidade acima do estoque mínimo.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <span class="badge badge-warning">
+                Estoque baixo
+            </span>
+
+            <p>
+                Quantidade igual ou inferior ao estoque mínimo.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <span class="badge badge-danger">
+                Próximo do vencimento
+            </span>
+
+            <p>
+                Remessa com validade dentro de 60 dias.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- MODAL DETALHES DO ESTOQUE -->
+<!-- ===================================================== -->
+
+<div id="modalEstoque" class="modal-overlay">
+
+    <div class="modal modal-large">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3>
+                    Detalhes do Estoque
+                </h3>
+
+                <p id="estoqueDetalheTitulo">
+                    Produto
+                </p>
+
+            </div>
+
+
+            <button class="modal-close" onclick="fecharDetalhesEstoque()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="detalhes-grid">
+
+                <div class="detalhe-item">
+
+                    <span>
+                        Produto
+                    </span>
+
+                    <strong id="estoqueDetalheProduto">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detalhe-item">
+
+                    <span>
+                        Variação
+                    </span>
+
+                    <strong id="estoqueDetalheVariacao">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detalhe-item">
+
+                    <span>
+                        Estoque atual
+                    </span>
+
+                    <strong id="estoqueDetalheQuantidade">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detalhe-item">
+
+                    <span>
+                        Estoque mínimo
+                    </span>
+
+                    <strong id="estoqueDetalheMinimo">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- REMESSAS -->
+
+            <div id="areaRemessasEstoque" class="estoque-remessas" style="display: none;">
+
+                <div class="form-section-title">
+
+                    <h3>
+                        Remessas
+                    </h3>
+
+                    <span>
+                        Controle de lotes e datas de validade.
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Lote
+                                </th>
+
+                                <th>
+                                    Quantidade
+                                </th>
+
+                                <th>
+                                    Validade
+                                </th>
+
+                                <th>
+                                    Situação
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabelaRemessasEstoque">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div id="semRemessasEstoque" class="estoque-sem-remessa" style="display: none;">
+
+                Este produto não possui controle de lote e validade.
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="btn btn-secondary" onclick="fecharDetalhesEstoque()">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

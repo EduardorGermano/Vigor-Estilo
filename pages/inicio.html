@@ -1,0 +1,268 @@
+<div class="dashboard">
+
+    <!-- BOAS-VINDAS -->
+    <div class="dashboard-welcome">
+
+        <div>
+            <h2>Olá, Roberto!</h2>
+            <p>
+                Veja abaixo as informações que precisam da sua atenção hoje.
+            </p>
+        </div>
+
+        <div class="dashboard-date">
+            12 de novembro de 2026
+        </div>
+
+    </div>
+
+
+    <!-- ALERTAS -->
+    <div class="dashboard-section">
+
+        <div class="section-header">
+            <h3>Atenção</h3>
+            <span>Resumo da operação</span>
+        </div>
+
+
+        <div class="dashboard-cards">
+
+            <!-- ESTOQUE BAIXO -->
+            <div class="dashboard-card card-warning">
+
+                <div class="dashboard-card-header">
+
+                    <span class="dashboard-card-title">
+                        Estoque baixo
+                    </span>
+
+                    <span class="dashboard-card-status">
+                        Atenção
+                    </span>
+
+                </div>
+
+                <strong class="dashboard-card-number">
+                    4
+                </strong>
+
+                <p>
+                    variações atingiram o estoque mínimo.
+                </p>
+
+                <button class="dashboard-link" onclick="abrirPagina('estoque')">
+
+                    Ver produtos
+
+                </button>
+
+            </div>
+
+
+            <!-- VENCIMENTO -->
+            <div class="dashboard-card card-expiration">
+
+                <div class="dashboard-card-header">
+
+                    <span class="dashboard-card-title">
+                        Próximos do vencimento
+                    </span>
+
+                    <span class="dashboard-card-status">
+                        60 dias
+                    </span>
+
+                </div>
+
+                <strong class="dashboard-card-number">
+                    3
+                </strong>
+
+                <p>
+                    remessas estão próximas do vencimento.
+                </p>
+
+                <button class="dashboard-link" onclick="abrirPagina('estoque')">
+
+                    Consultar produtos
+
+                </button>
+
+            </div>
+
+
+            <!-- PAGAMENTOS ATRASADOS -->
+            <div class="dashboard-card card-danger">
+
+                <div class="dashboard-card-header">
+
+                    <span class="dashboard-card-title">
+                        Pagamentos atrasados
+                    </span>
+
+                    <span class="dashboard-card-status">
+                        Pendente
+                    </span>
+
+                </div>
+
+                <strong class="dashboard-card-number">
+                    2
+                </strong>
+
+                <p>
+                    clientes possuem pagamentos em atraso.
+                </p>
+
+                <button class="dashboard-link" onclick="abrirPagina('clientes')">
+
+                    Ver clientes
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AÇÕES RÁPIDAS -->
+    <div class="dashboard-section">
+
+        <div class="section-header">
+            <h3>Ações rápidas</h3>
+            <span>Operações mais utilizadas</span>
+        </div>
+
+
+        <div class="quick-actions-grid">
+
+            <button class="quick-action" onclick="abrirPagina('venda')">
+
+                <div class="quick-action-icon">
+                    $
+                </div>
+
+                <div>
+                    <strong>Nova venda</strong>
+                    <span>
+                        Registrar uma nova venda
+                    </span>
+                </div>
+
+            </button>
+
+
+            <button class="quick-action" onclick="abrirPagina('entradaMercadoria')">
+
+                <div class="quick-action-icon">
+                    +
+                </div>
+
+                <div>
+                    <strong>Entrada de mercadoria</strong>
+                    <span>
+                        Registrar produtos recebidos
+                    </span>
+                </div>
+
+            </button>
+
+
+            <button class="quick-action" onclick="abrirPagina('produtos')">
+
+                <div class="quick-action-icon">
+                    P
+                </div>
+
+                <div>
+                    <strong>Produtos</strong>
+                    <span>
+                        Consultar produtos cadastrados
+                    </span>
+                </div>
+
+            </button>
+
+
+            <button class="quick-action" onclick="abrirPagina('clientes')">
+
+                <div class="quick-action-icon">
+                    C
+                </div>
+
+                <div>
+                    <strong>Clientes</strong>
+                    <span>
+                        Consultar clientes cadastrados
+                    </span>
+                </div>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESUMO -->
+    <div class="dashboard-section">
+
+        <div class="section-header">
+            <h3>Resumo de hoje</h3>
+            <span>Dados fictícios para demonstração</span>
+        </div>
+
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <span>Vendas realizadas</span>
+
+                <strong>
+                    18
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>Total vendido</span>
+
+                <strong>
+                    R$ 2.487,50
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>Produtos cadastrados</span>
+
+                <strong>
+                    86
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>Clientes cadastrados</span>
+
+                <strong>
+                    42
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

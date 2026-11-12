@@ -1,0 +1,402 @@
+<div class="page-header">
+
+    <div>
+        <h2>Clientes</h2>
+        <p>
+            Consulte clientes cadastrados e acesse o histórico de compras.
+        </p>
+    </div>
+
+    <button class="btn btn-primary" onclick="abrirModalCliente()">
+
+        + Novo Cliente
+
+    </button>
+
+</div>
+
+
+<div class="card clientes-filtros">
+
+    <div class="campo-pesquisa">
+
+        <label for="pesquisaCliente">
+            Pesquisar cliente
+        </label>
+
+        <input type="text" id="pesquisaCliente" placeholder="Digite o nome do cliente..." oninput="filtrarClientes()">
+
+    </div>
+
+</div>
+
+
+<div class="clientes-resumo">
+
+    <div class="resumo-produto-card">
+        <span>Clientes cadastrados</span>
+        <strong>4</strong>
+    </div>
+
+    <div class="resumo-produto-card">
+        <span>Com pagamentos atrasados</span>
+        <strong>2</strong>
+    </div>
+
+</div>
+
+
+<div class="table-container">
+
+    <table id="tabelaClientes">
+
+        <thead>
+
+            <tr>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Saldo pendente</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr data-pesquisa="joao da silva">
+
+                <td>
+                    <div class="produto-nome">
+                        <strong>João da Silva</strong>
+                        <span>Cliente antigo</span>
+                    </div>
+                </td>
+
+                <td>
+                    (44) 99999-1111
+                </td>
+
+                <td>
+                    R$ 180,00
+                </td>
+
+                <td>
+                    <span class="badge badge-danger">
+                        Pagamento atrasado
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirHistoricoCliente('João da Silva')">
+
+                        Histórico
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirDetalhesCliente(this)" data-nome="João da Silva"
+                        data-telefone="(44) 99999-1111" data-saldo="R$ 180,00" data-status="Pagamento atrasado">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr data-pesquisa="maria aparecida">
+
+                <td>
+                    <div class="produto-nome">
+                        <strong>Maria Aparecida</strong>
+                        <span>Cliente</span>
+                    </div>
+                </td>
+
+                <td>
+                    (44) 98888-2222
+                </td>
+
+                <td>
+                    R$ 0,00
+                </td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Em dia
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirHistoricoCliente('Maria Aparecida')">
+
+                        Histórico
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirDetalhesCliente(this)" data-nome="Maria Aparecida"
+                        data-telefone="(44) 98888-2222" data-saldo="R$ 0,00" data-status="Em dia">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr data-pesquisa="carlos eduardo">
+
+                <td>
+                    <div class="produto-nome">
+                        <strong>Carlos Eduardo</strong>
+                        <span>Cliente antigo</span>
+                    </div>
+                </td>
+
+                <td>
+                    (44) 97777-3333
+                </td>
+
+                <td>
+                    R$ 95,00
+                </td>
+
+                <td>
+                    <span class="badge badge-warning">
+                        Pendente
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirHistoricoCliente('Carlos Eduardo')">
+
+                        Histórico
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirDetalhesCliente(this)" data-nome="Carlos Eduardo"
+                        data-telefone="(44) 97777-3333" data-saldo="R$ 95,00" data-status="Pendente">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr data-pesquisa="ana paula">
+
+                <td>
+                    <div class="produto-nome">
+                        <strong>Ana Paula</strong>
+                        <span>Cliente</span>
+                    </div>
+                </td>
+
+                <td>
+                    (44) 96666-4444
+                </td>
+
+                <td>
+                    R$ 240,00
+                </td>
+
+                <td>
+                    <span class="badge badge-danger">
+                        Pagamento atrasado
+                    </span>
+                </td>
+
+                <td class="acoes-tabela">
+
+                    <button class="btn-table" onclick="abrirHistoricoCliente('Ana Paula')">
+
+                        Histórico
+
+                    </button>
+
+                    <button class="btn-table" onclick="abrirDetalhesCliente(this)" data-nome="Ana Paula"
+                        data-telefone="(44) 96666-4444" data-saldo="R$ 240,00" data-status="Pagamento atrasado">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div id="nenhumCliente" class="empty-state" style="display: none;">
+
+        <strong>Nenhum cliente encontrado.</strong>
+
+        <span>
+            Tente pesquisar outro nome.
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL NOVO CLIENTE -->
+<div id="modalNovoCliente" class="modal-overlay">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Novo Cliente</h3>
+                <p>
+                    Cadastre os dados básicos do cliente.
+                </p>
+            </div>
+
+            <button class="modal-close" onclick="fecharModalCliente()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form onsubmit="salvarCliente(event)">
+
+            <div class="modal-body">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="novoClienteNome">
+                            Nome *
+                        </label>
+
+                        <input type="text" id="novoClienteNome" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="novoClienteTelefone">
+                            Telefone
+                        </label>
+
+                        <input type="text" id="novoClienteTelefone" placeholder="(44) 99999-9999">
+
+                    </div>
+
+                </div>
+
+
+                <div id="mensagemCliente" class="form-message" style="display: none;">
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" onclick="fecharModalCliente()">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Salvar Cliente
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL DETALHES CLIENTE -->
+<div id="modalDetalhesCliente" class="modal-overlay">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Detalhes do Cliente</h3>
+                <p>
+                    Informações cadastradas.
+                </p>
+            </div>
+
+            <button class="modal-close" onclick="fecharDetalhesCliente()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="detalhes-grid">
+
+                <div class="detalhe-item">
+                    <span>Nome</span>
+                    <strong id="clienteDetalheNome">-</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Telefone</span>
+                    <strong id="clienteDetalheTelefone">-</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Saldo pendente</span>
+                    <strong id="clienteDetalheSaldo">-</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Status</span>
+                    <strong id="clienteDetalheStatus">-</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="btn btn-secondary" onclick="fecharDetalhesCliente()">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

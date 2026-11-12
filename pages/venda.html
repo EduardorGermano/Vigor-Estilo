@@ -1,0 +1,401 @@
+<div class="page-header">
+
+    <div>
+        <h2>Registrar Venda</h2>
+        <p>
+            Selecione os produtos, informe as quantidades e finalize a venda.
+        </p>
+    </div>
+
+</div>
+
+
+<div class="venda-layout">
+
+    <!-- ========================= -->
+    <!-- LADO ESQUERDO -->
+    <!-- ========================= -->
+
+    <div class="venda-main">
+
+
+        <!-- CLIENTE -->
+        <div class="card venda-card">
+
+            <div class="form-section-title">
+
+                <h3>Cliente</h3>
+
+                <span>
+                    A identificação é opcional para vendas comuns.
+                </span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="clienteVenda">
+                    Cliente
+                </label>
+
+                <select id="clienteVenda">
+
+                    <option value="">
+                        Venda sem cliente identificado
+                    </option>
+
+                    <option value="João da Silva">
+                        João da Silva
+                    </option>
+
+                    <option value="Maria Aparecida">
+                        Maria Aparecida
+                    </option>
+
+                    <option value="Carlos Eduardo">
+                        Carlos Eduardo
+                    </option>
+
+                    <option value="Ana Paula">
+                        Ana Paula
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADICIONAR PRODUTO -->
+        <div class="card venda-card">
+
+            <div class="form-section-title">
+
+                <h3>Adicionar Produto</h3>
+
+                <span>
+                    Selecione um produto disponível em estoque.
+                </span>
+
+            </div>
+
+
+            <div class="produto-adicionar-grid">
+
+                <div class="form-group">
+
+                    <label for="produtoVenda">
+                        Produto
+                    </label>
+
+                    <select id="produtoVenda">
+
+                        <option value="">
+                            Selecione um produto
+                        </option>
+
+                        <option value="whey">
+                            Whey Protein - Chocolate - 1 kg
+                        </option>
+
+                        <option value="creatina">
+                            Creatina - 250 g
+                        </option>
+
+                        <option value="camisetaM">
+                            Camiseta Dry Fit - Preta - M
+                        </option>
+
+                        <option value="camisetaG">
+                            Camiseta Dry Fit - Preta - G
+                        </option>
+
+                        <option value="preTreino">
+                            Pré-Treino Haze - 300 g
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="quantidadeProdutoVenda">
+                        Quantidade
+                    </label>
+
+                    <input type="number" id="quantidadeProdutoVenda" value="1" min="1">
+
+                </div>
+
+
+                <button class="btn btn-primary btn-adicionar-produto" onclick="adicionarProdutoVenda()">
+
+                    + Adicionar
+
+                </button>
+
+            </div>
+
+
+            <div id="mensagemVenda" class="form-message" style="display: none;">
+            </div>
+
+        </div>
+
+
+        <!-- ITENS -->
+        <div class="card venda-card">
+
+            <div class="form-section-title">
+
+                <h3>Itens da Venda</h3>
+
+                <span>
+                    Altere as quantidades ou remova itens quando necessário.
+                </span>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Subtotal</th>
+                            <th>Ações</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="itensVendaTabela">
+
+                        <tr id="vendaSemItens">
+
+                            <td colspan="5" class="venda-vazia">
+
+                                Nenhum produto adicionado.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- RESUMO DA VENDA -->
+    <!-- ========================= -->
+
+    <aside class="card resumo-venda">
+
+        <div class="form-section-title">
+
+            <h3>Resumo da Venda</h3>
+
+            <span>
+                Confira os valores antes de concluir.
+            </span>
+
+        </div>
+
+
+        <div class="resumo-venda-linha">
+
+            <span>Quantidade de itens</span>
+
+            <strong id="totalItensVenda">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="resumo-venda-linha">
+
+            <span>Subtotal</span>
+
+            <strong id="subtotalVenda">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <!-- DESCONTO -->
+
+        <div class="form-group desconto-venda">
+
+            <label for="descontoVenda">
+                Desconto (%)
+            </label>
+
+            <input type="number" id="descontoVenda" value="0" min="0" max="100" step="0.1" oninput="calcularVenda()">
+
+        </div>
+
+
+        <div id="avisoDesconto" class="aviso-desconto" style="display: none;">
+
+            Descontos acima de 5% exigem autorização do administrador.
+
+        </div>
+
+
+        <div class="resumo-venda-total">
+
+            <span>Total</span>
+
+            <strong id="totalVenda">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <!-- FORMA DE PAGAMENTO -->
+
+        <div class="form-group">
+
+            <label for="formaPagamentoVenda">
+                Forma de pagamento *
+            </label>
+
+            <select id="formaPagamentoVenda" onchange="alterarFormaPagamento()">
+
+                <option value="">
+                    Selecione
+                </option>
+
+                <option value="PIX">
+                    PIX
+                </option>
+
+                <option value="Débito">
+                    Cartão de débito
+                </option>
+
+                <option value="Crédito">
+                    Cartão de crédito
+                </option>
+
+                <option value="Fiado">
+                    Fiado
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- VENCIMENTO FIADO -->
+
+        <div id="campoVencimentoFiado" class="form-group" style="display: none;">
+
+            <label for="vencimentoFiado">
+                Data de vencimento *
+            </label>
+
+            <input type="date" id="vencimentoFiado">
+
+        </div>
+
+
+        <button class="btn btn-primary btn-finalizar-venda" onclick="prepararConfirmacaoVenda()">
+
+            Revisar e Concluir
+
+        </button>
+
+    </aside>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- MODAL AUTORIZAÇÃO -->
+<!-- ========================= -->
+
+<div id="modalAutorizarDesconto" class="modal-overlay">
+
+    <div class="modal modal-small">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3>Autorizar Desconto</h3>
+
+                <p>
+                    O desconto informado é superior a 5%.
+                </p>
+
+            </div>
+
+
+            <button class="modal-close" onclick="fecharAutorizacaoDesconto()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="form-group">
+
+                <label for="senhaAdministrador">
+                    Senha do administrador
+                </label>
+
+                <input type="password" id="senhaAdministrador" placeholder="Digite a senha">
+
+            </div>
+
+
+            <div id="mensagemAutorizacao" class="form-message" style="display: none;">
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="btn btn-secondary" onclick="fecharAutorizacaoDesconto()">
+
+                Cancelar
+
+            </button>
+
+
+            <button class="btn btn-primary" onclick="autorizarDesconto()">
+
+                Autorizar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

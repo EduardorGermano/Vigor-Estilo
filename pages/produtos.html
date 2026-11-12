@@ -1,0 +1,529 @@
+<div class="page-header">
+
+    <div>
+        <h2>Produtos</h2>
+        <p>
+            Consulte os produtos cadastrados e acompanhe o estoque de cada variação.
+        </p>
+    </div>
+
+    <button class="btn btn-primary" onclick="abrirPagina('cadastroProduto')">
+
+        + Novo Produto
+
+    </button>
+
+</div>
+
+
+<!-- FILTROS -->
+<div class="card produtos-filtros">
+
+    <div class="campo-pesquisa">
+
+        <label for="pesquisaProduto">
+            Pesquisar produto
+        </label>
+
+        <input type="text" id="pesquisaProduto" placeholder="Digite nome, marca ou variação..."
+            oninput="filtrarProdutos()">
+
+    </div>
+
+
+    <div class="campo-categoria">
+
+        <label for="filtroCategoria">
+            Categoria
+        </label>
+
+        <select id="filtroCategoria" onchange="filtrarProdutos()">
+
+            <option value="">
+                Todas as categorias
+            </option>
+
+            <option value="Suplemento">
+                Suplemento
+            </option>
+
+            <option value="Roupa">
+                Roupa
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+<!-- RESUMO -->
+<div class="produtos-resumo">
+
+    <div class="resumo-produto-card">
+
+        <span>Produtos cadastrados</span>
+
+        <strong>6</strong>
+
+    </div>
+
+
+    <div class="resumo-produto-card">
+
+        <span>Estoque baixo</span>
+
+        <strong>2</strong>
+
+    </div>
+
+
+    <div class="resumo-produto-card">
+
+        <span>Próximos do vencimento</span>
+
+        <strong>2</strong>
+
+    </div>
+
+</div>
+
+
+<!-- TABELA -->
+<div class="table-container produtos-table">
+
+    <table id="tabelaProdutos">
+
+        <thead>
+
+            <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Variação</th>
+                <th>Estoque</th>
+                <th>Mínimo</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <!-- PRODUTO 1 -->
+            <tr data-categoria="Suplemento" data-pesquisa="whey protein max titanium chocolate 1kg">
+
+                <td>
+
+                    <div class="produto-nome">
+                        <strong>Whey Protein</strong>
+                        <span>Max Titanium</span>
+                    </div>
+
+                </td>
+
+                <td>
+                    Suplemento
+                </td>
+
+                <td>
+                    Chocolate • 1 kg
+                </td>
+
+                <td>
+                    12
+                </td>
+
+                <td>
+                    5
+                </td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Normal
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" data-nome="Whey Protein" data-categoria="Suplemento"
+                        data-marca="Max Titanium" data-variacao="Chocolate - 1 kg" data-estoque="12 unidades"
+                        data-minimo="5 unidades" data-preco="R$ 149,90" data-status="Normal"
+                        onclick="abrirDetalhesProduto(this)">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <!-- PRODUTO 2 -->
+            <tr data-categoria="Suplemento" data-pesquisa="creatina growth 250g">
+
+                <td>
+
+                    <div class="produto-nome">
+                        <strong>Creatina</strong>
+                        <span>Growth</span>
+                    </div>
+
+                </td>
+
+                <td>
+                    Suplemento
+                </td>
+
+                <td>
+                    250 g
+                </td>
+
+                <td>
+                    3
+                </td>
+
+                <td>
+                    5
+                </td>
+
+                <td>
+                    <span class="badge badge-warning">
+                        Estoque baixo
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" data-nome="Creatina" data-categoria="Suplemento" data-marca="Growth"
+                        data-variacao="250 g" data-estoque="3 unidades" data-minimo="5 unidades" data-preco="R$ 89,90"
+                        data-status="Estoque baixo" onclick="abrirDetalhesProduto(this)">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <!-- PRODUTO 3 -->
+            <tr data-categoria="Suplemento" data-pesquisa="whey protein integralmedica morango 900g">
+
+                <td>
+
+                    <div class="produto-nome">
+                        <strong>Whey Protein</strong>
+                        <span>Integralmédica</span>
+                    </div>
+
+                </td>
+
+                <td>
+                    Suplemento
+                </td>
+
+                <td>
+                    Morango • 900 g
+                </td>
+
+                <td>
+                    7
+                </td>
+
+                <td>
+                    4
+                </td>
+
+                <td>
+                    <span class="badge badge-danger">
+                        Vence em 42 dias
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" data-nome="Whey Protein" data-categoria="Suplemento"
+                        data-marca="Integralmédica" data-variacao="Morango - 900 g" data-estoque="7 unidades"
+                        data-minimo="4 unidades" data-preco="R$ 129,90" data-status="Próximo do vencimento"
+                        onclick="abrirDetalhesProduto(this)">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <!-- PRODUTO 4 -->
+            <tr data-categoria="Roupa" data-pesquisa="camiseta dry fit preta m">
+
+                <td>
+
+                    <div class="produto-nome">
+                        <strong>Camiseta Dry Fit</strong>
+                        <span>Vigor & Estilo</span>
+                    </div>
+
+                </td>
+
+                <td>
+                    Roupa
+                </td>
+
+                <td>
+                    Preta • M
+                </td>
+
+                <td>
+                    2
+                </td>
+
+                <td>
+                    4
+                </td>
+
+                <td>
+                    <span class="badge badge-warning">
+                        Estoque baixo
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" data-nome="Camiseta Dry Fit" data-categoria="Roupa"
+                        data-marca="Vigor & Estilo" data-variacao="Preta - M" data-estoque="2 unidades"
+                        data-minimo="4 unidades" data-preco="R$ 69,90" data-status="Estoque baixo"
+                        onclick="abrirDetalhesProduto(this)">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <!-- PRODUTO 5 -->
+            <tr data-categoria="Roupa" data-pesquisa="camiseta dry fit preta g">
+
+                <td>
+
+                    <div class="produto-nome">
+                        <strong>Camiseta Dry Fit</strong>
+                        <span>Vigor & Estilo</span>
+                    </div>
+
+                </td>
+
+                <td>
+                    Roupa
+                </td>
+
+                <td>
+                    Preta • G
+                </td>
+
+                <td>
+                    9
+                </td>
+
+                <td>
+                    4
+                </td>
+
+                <td>
+                    <span class="badge badge-success">
+                        Normal
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" data-nome="Camiseta Dry Fit" data-categoria="Roupa"
+                        data-marca="Vigor & Estilo" data-variacao="Preta - G" data-estoque="9 unidades"
+                        data-minimo="4 unidades" data-preco="R$ 69,90" data-status="Normal"
+                        onclick="abrirDetalhesProduto(this)">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <!-- PRODUTO 6 -->
+            <tr data-categoria="Suplemento" data-pesquisa="pre treino haze growth frutas vermelhas 300g">
+
+                <td>
+
+                    <div class="produto-nome">
+                        <strong>Pré-Treino Haze</strong>
+                        <span>Growth</span>
+                    </div>
+
+                </td>
+
+                <td>
+                    Suplemento
+                </td>
+
+                <td>
+                    Frutas Vermelhas • 300 g
+                </td>
+
+                <td>
+                    6
+                </td>
+
+                <td>
+                    3
+                </td>
+
+                <td>
+                    <span class="badge badge-danger">
+                        Vence em 55 dias
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-table" data-nome="Pré-Treino Haze" data-categoria="Suplemento"
+                        data-marca="Growth" data-variacao="Frutas Vermelhas - 300 g" data-estoque="6 unidades"
+                        data-minimo="3 unidades" data-preco="R$ 99,90" data-status="Próximo do vencimento"
+                        onclick="abrirDetalhesProduto(this)">
+
+                        Detalhes
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <!-- MENSAGEM QUANDO NÃO ENCONTRAR -->
+    <div id="nenhumProduto" class="empty-state" style="display: none;">
+
+        <strong>Nenhum produto encontrado.</strong>
+
+        <span>
+            Altere os filtros ou pesquise outro produto.
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL DE DETALHES -->
+<div id="modalProduto" class="modal-overlay">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Detalhes do Produto</h3>
+                <p>
+                    Informações da variação selecionada.
+                </p>
+            </div>
+
+            <button class="modal-close" onclick="fecharDetalhesProduto()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="detalhes-grid">
+
+                <div class="detalhe-item">
+                    <span>Produto</span>
+                    <strong id="detalheNome">-</strong>
+                </div>
+
+
+                <div class="detalhe-item">
+                    <span>Categoria</span>
+                    <strong id="detalheCategoria">-</strong>
+                </div>
+
+
+                <div class="detalhe-item">
+                    <span>Marca</span>
+                    <strong id="detalheMarca">-</strong>
+                </div>
+
+
+                <div class="detalhe-item">
+                    <span>Variação</span>
+                    <strong id="detalheVariacao">-</strong>
+                </div>
+
+
+                <div class="detalhe-item">
+                    <span>Estoque disponível</span>
+                    <strong id="detalheEstoque">-</strong>
+                </div>
+
+
+                <div class="detalhe-item">
+                    <span>Estoque mínimo</span>
+                    <strong id="detalheMinimo">-</strong>
+                </div>
+
+
+                <div class="detalhe-item">
+                    <span>Preço de venda</span>
+                    <strong id="detalhePreco">-</strong>
+                </div>
+
+
+                <div class="detalhe-item">
+                    <span>Status</span>
+                    <strong id="detalheStatus">-</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="btn btn-secondary" onclick="fecharDetalhesProduto()">
+
+                Fechar
+
+            </button>
+
+            <button class="btn btn-primary" onclick="abrirPagina('cadastroProduto')">
+
+                Editar Produto
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
